@@ -6,12 +6,21 @@ import { registerUser } from '../auth/auth';
 export const Register = () => {
 
     const [ form, setForm ] = useState({
-        name: "",
-        email: "",
+        nombre: "",
+        correo: "",
         password: "",
-        phone: "",
+        telefono: "",
         rol: ""
     });
+
+//     {
+//     "nombre": "Jeffry Espinal Valle",
+//     "correo": "jeffry.espinal@unah.hn",
+//     "telefono": "98899889",
+//     "password": "123456789",
+//     "rol": "admin"     
+// }
+
 
     const [error, setError] = useState("");
 
@@ -22,7 +31,9 @@ export const Register = () => {
     };
 
     const handleSubmit = async event => {
+
         event.preventDefault();
+        
         setError("");
 
         try {
@@ -57,11 +68,11 @@ export const Register = () => {
                 </label>
                 <div className="mt-2">
                   <input
-                    id="name"
-                    name="name"
+                    id="nombre"
+                    name="nombre"
                     type="text"
                     required
-                    value={form.name}
+                    value={form.nombre}
                     onChange={ handleChange }
                     className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
                   />
@@ -73,11 +84,11 @@ export const Register = () => {
                 </label>
                 <div className="mt-2">
                   <input
-                    id="email"
-                    name="email"
-                    type="email"
+                    id="correo"
+                    name="correo"
+                    type="correo"
                     required
-                    value={form.email}
+                    value={form.correo}
                     onChange={ handleChange }
                     className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
                   />
@@ -105,11 +116,11 @@ export const Register = () => {
                 </label>
                 <div className="mt-2">
                   <input
-                    id="phone"
-                    name="phone"
+                    id="telefono"
+                    name="telefono"
                     type="text"
                     required
-                    value={ form.phone }
+                    value={ form.telefono }
                     onChange={ handleChange }
                     className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
                   />
