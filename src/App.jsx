@@ -1,7 +1,16 @@
-import React from 'react'
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import { Login } from './components/Login.jsx'
+import { Register } from './components/Register.jsx'
 
 export const App = () => {
   return (
-    <h1>Hello, World!</h1>
+    
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+      </Routes>
+    </BrowserRouter>
+
   )
 }
