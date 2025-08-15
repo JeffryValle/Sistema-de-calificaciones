@@ -5,6 +5,8 @@ import { PanelAdmin } from './admin/PanelAdmin.jsx'
 import { StudentsTabla } from './admin/components/StudentsTabla.jsx'
 import { useState } from 'react'
 import { Matriculas } from './admin/components/Matriculas.jsx'
+import LoadingRedirect from './components/LoadingRedirect.jsx'
+import { SetPassword } from './components/SetPassword.jsx'
 
 export const App = () => {
 
@@ -17,13 +19,23 @@ export const App = () => {
     
     <BrowserRouter>
       <Routes>
-        {/* <Route path="/" element={<Login />} /> */}
+        <Route path="/" element={<Login />} />
         <Route path="/register" element={<Register  />} />
+        <Route path="/redirecting" element={<LoadingRedirect  />} />
+        <Route path="/set-password" element={<SetPassword  />} />
 
         
         <Route path="/admin" element={<PanelAdmin />} >
           <Route path="estudiantes" element={<StudentsTabla students={ students } /> } />
           <Route path="matriculas" element={<Matriculas students={ students } />} />
+        </Route>
+
+        <Route>
+          { /** Rutas para /estudiante */ }
+        </Route>
+
+        <Route>
+          { /** Rutas para /docente */ }
         </Route>
 
       </Routes>
