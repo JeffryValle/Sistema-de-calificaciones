@@ -7,6 +7,9 @@ import { useState } from 'react'
 import { Matriculas } from './admin/components/Matriculas.jsx'
 import LoadingRedirect from './components/LoadingRedirect.jsx'
 import { SetPassword } from './components/SetPassword.jsx'
+import { PanelEstudiante } from './estudiante/PanelEstudiante.jsx'
+import { PanelDocente } from './docente/PanelDocente.jsx'
+import { CursosTable } from './estudiante/components/CursosTable.jsx'
 
 export const App = () => {
 
@@ -30,12 +33,15 @@ export const App = () => {
           <Route path="matriculas" element={<Matriculas students={ students } />} />
         </Route>
 
-        <Route>
-          { /** Rutas para /estudiante */ }
+        <Route path="/estudiante" element={<PanelEstudiante />} >
+          <Route path="/estudiante/estudiantes" element={<CursosTable /> } />
+          <Route path="/estudiante/matriculas" element={<Matriculas students={ students } />} />
+          <Route path="/estudiante/cursos" element={<Matriculas students={ students } />} />
         </Route>
 
-        <Route>
-          { /** Rutas para /docente */ }
+        <Route path="/docente" element={<PanelDocente />} >
+          <Route path="estudiantes" element={<StudentsTabla students={ students } /> } />
+          <Route path="matriculas" element={<Matriculas students={ students } />} />
         </Route>
 
       </Routes>

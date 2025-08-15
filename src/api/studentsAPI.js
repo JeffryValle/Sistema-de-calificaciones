@@ -1,10 +1,46 @@
 
 
-export const fetchStudents= async () => {
+export const getStudents = async ( token ) => {
+
+  if ( !token ) throw new Error("Token no proporcionado.");
     
-  const res = await fetch(`${ process.env.API_URL }/api/students`);
+  const resp = await fetch(`${import.meta.env.VITE_API_URL}/usuarios`, {
+    method: "GET",
+    headers: { 
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`, 
+    },
+  });
 
-  if (!res.ok) throw new Error("Error al obtener estudiantes");
+  if (!resp.ok) throw new Error("Error al obtener estudiantes");
 
-  return res.json();
+  const json = await resp.json().catch(() => null);
+  if (!resp.ok) {
+    const msg = (json && json.message) || `Error al obtener estudiantes: HTTP ${resp.status}`;
+    throw new Error(msg);
+  }
+
+  return json; // { success: true, message: 'Contraseña actualizada correctamente' }
+}
+
+export const getCursos = async ( ) => {
+
+  const response = await fetch(`${import.meta.env.VITE_API_URL}/cursos/`, {
+    method: "GET",
+    headers: { 
+      "Content-Type": "application/json",
+    },
+  });
+
+  if (!response.ok) throw new Error("Error al obtener cursos");
+
+  const json = await response.json().catch(() => null);
+  if ( !response.ok ) {
+    const msg = (json && json.message) || `Error al obtener estudiantes: HTTP ${response.status}`;
+    throw new Error(msg);
+  }
+
+  console.log(json);
+  return json; // { success: true, message: 'Contraseña actualizada correctamente' }
+
 }

@@ -39,7 +39,6 @@ export const SetPassword = () => {
     if (!t) {
       navigate("/", { replace: true });
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const onSubmit = handleSubmit(async (data) => {

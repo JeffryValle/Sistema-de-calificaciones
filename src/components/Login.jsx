@@ -35,7 +35,7 @@ try {
       }
 
       // Login normal: guarda token (ej. localStorage) y redirige al dashboard
-      if (resp.token) {
+      if ( resp.token ) {
         // Guarda token donde prefieras (localStorage/sessionStorage/estado global)
         localStorage.setItem("auth_token", resp.token);
         // opcional: guarda info del usuario
@@ -44,11 +44,32 @@ try {
         setSuccess(true);
         // redirige a dashboard u otra ruta
         // después de recibir token y guardarlo
-        navigate("/redirecting", {
-          state: { to: "/admin", message: "Iniciando sesión...", delay: 1200 },
-          replace: true
-        });
 
+        const rol = resp.data?.rol_nombre;
+        
+        if ( rol === "admin" ) {
+            navigate("/redirecting", {
+            state: { to: "/admin", message: "Iniciando sesión...", delay: 2000 },
+            replace: true
+          });  
+        } else if ( rol === "estudiante" ) {
+            navigate("/redirecting", {
+            state: { to: "/estudiante", message: "Iniciando sesión...", delay: 2000 },
+            replace: true
+          });  
+        } else if ( rol === "docente" ) {
+            navigate("/redirecting", {
+            state: { to: "/docente", message: "Iniciando sesión...", delay: 2000 },
+            replace: true
+          });  
+        } else {
+          navigate("/redirecting", {
+              state: { to: "/", message: "Iniciando sesión...", delay: 2000 },
+              replace: true
+            }); 
+        }
+
+        
         return;
       }
 
