@@ -1,3 +1,7 @@
+const API_BASE =
+  (typeof import.meta !== "undefined" && import.meta.env?.VITE_API_URL) ||
+  (typeof process !== "undefined" && process.env?.REACT_APP_API_URL) ||
+  "";
 
 
 export const getStudents = async ( token ) => {
@@ -40,20 +44,19 @@ export const getCursos = async ( ) => {
     throw new Error(msg);
   }
 
-  console.log(json);
   return json; // { success: true, message: 'Contraseña actualizada correctamente' }
 
 }
 
-export const getAllMatriculas = async ( token ) => {
+export const getAllMatriculas = async ( token, id ) => {
 
   if ( !token ) throw new Error("Token no proporcionado.");
-
-  const response = await fetch(`${import.meta.env.VITE_API_URL}/matriculas/`, {
+  
+  const response = await fetch(`http://localhost:3000/matriculas/usuario/${id}`, {
     method: "GET",
     headers: { 
       "Content-Type": "application/json",
-      Authorization: `Bearer ${token}`, 
+      Authorization: `Bearer ${token}`
     },
   });
 

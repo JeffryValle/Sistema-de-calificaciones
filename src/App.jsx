@@ -11,6 +11,8 @@ import { PanelEstudiante } from './estudiante/PanelEstudiante.jsx'
 import { PanelDocente } from './docente/PanelDocente.jsx'
 import { CursosTable } from './estudiante/components/CursosTable.jsx'
 import { MatriculasTable } from './estudiante/components/MatriculaTable.jsx'
+import { ScoreTable } from './docente/components/ScoreTable.jsx'
+import { ScoreTableByStudent } from './docente/components/ScoreTableByStudent.jsx'
 
 export const App = () => {
 
@@ -35,14 +37,13 @@ export const App = () => {
         </Route>
 
         <Route path="/estudiante" element={<PanelEstudiante />} >
-          <Route path="/estudiante/estudiantes" element={<CursosTable /> } />
+          <Route path="/estudiante/cursos" element={<CursosTable /> } />
           <Route path="/estudiante/matriculas" element={<MatriculasTable />} />
-          <Route path="/estudiante/cursos" element={<Matriculas students={ students } />} />
         </Route>
 
         <Route path="/docente" element={<PanelDocente />} >
-          <Route path="estudiantes" element={<StudentsTabla students={ students } /> } />
-          <Route path="matriculas" element={<Matriculas students={ students } />} />
+          <Route path="/docente/calificaciones" element={<ScoreTable /> } />
+          <Route path="/docente/scorebystudent" element={<ScoreTableByStudent />} />
         </Route>
 
       </Routes>

@@ -9,6 +9,32 @@ export const PanelAdmin = () => {
 
   const isActive = (path) => location.pathname.endsWith(path);
 
+  const [name, setName] = useState('')
+  
+    // const getToken = () => {
+    //   return sessionStorage.getItem("auth_token") || location.state?.token || null;
+    // };
+    
+    const nombre = () => {
+      const userStr = localStorage.getItem("auth_user");
+      if (!userStr) return null;
+      try {
+        const user = JSON.parse(userStr);
+        return user.nombre || null;
+      } catch {
+        return null;
+      }
+    };
+  
+    useEffect(() => {
+        const fetchNombre = async () => {
+          const name = await nombre();
+          if ( !name ) return;
+          setName(name)
+        };
+        fetchNombre();
+      }, []);
+
   return (
     <>
     
@@ -22,7 +48,7 @@ export const PanelAdmin = () => {
             />
           </div>
           <div className="w-1/2">
-            <span className="font-semibold text-white text-xl/20">Jeffry Valle</span>
+            <span className="font-semibold text-white text-xl/20">{ name }</span>
           </div>
         </div>
         <div className="mt-10 mb-4">

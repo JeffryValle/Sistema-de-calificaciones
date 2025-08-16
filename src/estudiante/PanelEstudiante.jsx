@@ -8,34 +8,49 @@ export const PanelEstudiante = () => {
   const location = useLocation();
 
   const isActive = (path) => location.pathname.endsWith(path);
+  const [name, setName] = useState('')
 
   // const getToken = () => {
   //   return sessionStorage.getItem("auth_token") || location.state?.token || null;
   // };
   
+  const nombre = () => {
+    const userStr = localStorage.getItem("auth_user");
+    if (!userStr) return null;
+    try {
+      const user = JSON.parse(userStr);
+      return user.nombre || null;
+    } catch {
+      return null;
+    }
+  };
+
+  useEffect(() => {
+      const fetchNombre = async () => {
+        const name = await nombre();
+        if ( !name ) return;
+        setName(name)
+      };
+      fetchNombre();
+    }, []);
+
   return (
     <>
     
     <div className="flex min-h-screen">
       <nav className="flex flex-col bg-purple-900 w-64 h-screen px-4 tex-gray-900 border border-purple-900">
-        <div className="flex flex-wrap mt-8">
-          <div className="w-1/2">
-            <img
-              src="https://randomuser.me/api/portraits/men/28.jpg"
-              className="mx-auto w-20 h-20 rounded-full"
-            />
-          </div>
-          <div className="w-1/2">
-            <span className="font-semibold text-white text-xl/20">Jeffry Valle</span>
+        <div className="flex flex-col mt-8">
+          <div className="w-1/1">
+            <span className="font-semibold text-white text-xl/16"> { name } </span>
           </div>
         </div>
         <div className="mt-10 mb-4">
           <ul className="ml-4">
             <li className="mb-2">
               <Link
-                to="/estudiante/estudiantes"
+                to="/estudiante/cursos"
                 className={`px-4 py-4 flex flex-row rounded-lg border-gray-300 transition-colors
-                  ${isActive("/estudiante/estudiantes")
+                  ${isActive("/estudiante/cursos")
                     ? "bg-gray-300 text-black font-bold"
                     : "text-gray-100 hover:text-black hover:bg-gray-300 hover:font-bold"}
                 `}
@@ -73,7 +88,7 @@ export const PanelEstudiante = () => {
                 <span className="ml-2">Matriculas</span>
               </Link>
             </li>
-            <li className="mb-2 px-4 py-4 text-gray-100 flex flex-row  border-gray-300 hover:text-black   hover:bg-gray-300  hover:font-bold rounded rounded-lg">
+            {/* <li className="mb-2 px-4 py-4 text-gray-100 flex flex-row  border-gray-300 hover:text-black   hover:bg-gray-300  hover:font-bold rounded rounded-lg">
               <span>
                 <svg className="fill-current h-5 w-5 " viewBox="0 0 24 24">
                   <path
@@ -86,7 +101,7 @@ export const PanelEstudiante = () => {
               <a href="#">
                 <span className="ml-2">Cursos</span>
               </a>
-            </li>
+            </li> */}
             {/* <li className="mb-2 px-4 py-4 text-gray-100 flex flex-row  border-gray-300 hover:text-black   hover:bg-gray-300  hover:font-bold rounded rounded-lg">
               <span>
                 <svg className="fill-current h-5 w-5" viewBox="0 0 24 24">
