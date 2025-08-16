@@ -44,3 +44,28 @@ export const getCursos = async ( ) => {
   return json; // { success: true, message: 'Contraseña actualizada correctamente' }
 
 }
+
+export const getAllMatriculas = async ( token ) => {
+
+  if ( !token ) throw new Error("Token no proporcionado.");
+
+  const response = await fetch(`${import.meta.env.VITE_API_URL}/matriculas/`, {
+    method: "GET",
+    headers: { 
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`, 
+    },
+  });
+
+  if (!response.ok) throw new Error("Error al obtener matriculas");
+
+  const json = await response.json().catch(() => null);
+  if ( !response.ok ) {
+    const msg = (json && json.message) || `Error al obtener matriculas: HTTP ${ response.status }`;
+    throw new Error(msg);
+  }
+
+  console.log(json);
+  return json; // { success: true, message: 'Contraseña actualizada correctamente' }
+
+}

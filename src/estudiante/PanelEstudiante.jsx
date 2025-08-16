@@ -33,7 +33,7 @@ export const PanelEstudiante = () => {
           <ul className="ml-4">
             <li className="mb-2">
               <Link
-                to="/estudiantes/estudiantes"
+                to="/estudiante/estudiantes"
                 className={`px-4 py-4 flex flex-row rounded-lg border-gray-300 transition-colors
                   ${isActive("/estudiante/estudiantes")
                     ? "bg-gray-300 text-black font-bold"
@@ -49,14 +49,14 @@ export const PanelEstudiante = () => {
                     ></path>
                   </svg>
               </span>
-                <span className="ml-2">Estudiantes</span>
+                <span className="ml-2">Cursos</span>
               </Link>
             </li>
             <li className="mb-2">
               <Link
-                to="matriculas"
+                to="/estudiante/matriculas"
                 className={`px-4 py-4 flex flex-row rounded-lg border-gray-300 transition-colors
-                  ${isActive("matriculas")
+                  ${isActive("/estudiante/matriculas")
                     ? "bg-gray-300 text-black font-bold"
                     : "text-gray-100 hover:text-black hover:bg-gray-300 hover:font-bold"}
                 `}

@@ -1,18 +1,24 @@
 import { useEffect, useState } from "react";
-import { getCursos } from "../../api/studentsAPI.js";
+import { getAllMatriculas } from "../../api/studentsAPI.js";
 
-export const CursosTable = () => {
+export const MatriculasTable = () => {
 
-    const [ allCursos, setAllCursos ] = useState([])
+    const [ allMatriculas, setAllMatriculas ] = useState([])
+
+    const getToken = () => {
+        return sessionStorage.getItem("auth_token") || location.state?.token || null;
+    };
 
     useEffect(() => {
       return async() => {
-        const cursos = await getCursos();
-        setAllCursos(cursos);
+        const matriculas = await getAllMatriculas( getToken );
+        setAllMatriculas( allMatriculas );
       }
     }, [])
 
-    console.log( {allCursos} )
+
+    console.log( allMatriculas )
+ 
   return (
     <div className="overflow-x-auto p-6">
     <h2 className="text-2xl font-bold mb-4">Estudiantes</h2>
@@ -25,7 +31,7 @@ export const CursosTable = () => {
         </tr>
       </thead>
       <tbody>
-        { allCursos.map(( curso ) => (
+        { allMatriculas.map(( curso ) => (
           <tr key={curso.curso_id} className="hover:bg-gray-100">
             <td className="py-2 px-4 border-b">{ curso.curso_id }</td>
             <td className="py-2 px-4 border-b">{ curso.nombre }</td>

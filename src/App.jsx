@@ -10,6 +10,7 @@ import { SetPassword } from './components/SetPassword.jsx'
 import { PanelEstudiante } from './estudiante/PanelEstudiante.jsx'
 import { PanelDocente } from './docente/PanelDocente.jsx'
 import { CursosTable } from './estudiante/components/CursosTable.jsx'
+import { MatriculasTable } from './estudiante/components/MatriculaTable.jsx'
 
 export const App = () => {
 
@@ -35,7 +36,7 @@ export const App = () => {
 
         <Route path="/estudiante" element={<PanelEstudiante />} >
           <Route path="/estudiante/estudiantes" element={<CursosTable /> } />
-          <Route path="/estudiante/matriculas" element={<Matriculas students={ students } />} />
+          <Route path="/estudiante/matriculas" element={<MatriculasTable />} />
           <Route path="/estudiante/cursos" element={<Matriculas students={ students } />} />
         </Route>
 
